@@ -135,7 +135,7 @@ def train(epochs: int):
         print("Accurate value: ", acc_val / len(train_dataloader))
         print(f"Epoch {epoch} ended\n<{"=" * 40}>")
 
-    torch.save(model, "model.pth")
+    torch.save(model, "../server/model.pth")
 
 
 train(1)

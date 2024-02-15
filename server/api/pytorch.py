@@ -1,5 +1,3 @@
-import cv2
-import numpy as np
 import torch
 from torch import nn
 
@@ -39,29 +37,9 @@ class Network(nn.Module):
 
         return x
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-model = torch.load("../server/model.pth", map_location=device)
+path = "model.pth"
 
-file_name = "img.png"
+model = torch.load(path).to(device='cuda')
 
-img = cv2.imread(file_name, cv2.IMREAD_COLOR)
-
-img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
-img = img.astype(np.float32)
-img = img / 255.0
-
-img = cv2.resize(img, (128, 128), interpolation=cv2.INTER_AREA)
-img = img.transpose((2, 0, 1))
-
-t_img = torch.from_numpy(img).to(device)
-t_img = t_img.unsqueeze(0)
-
-with torch.no_grad():
-    output = model(t_img).squeeze(0)
-
-    if output[0] > 0:
-        print("Most likely dog is on the picture")
-    else:
-        print("Most likely cat is on the picture")
+model.eval()
