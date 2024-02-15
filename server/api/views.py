@@ -11,7 +11,6 @@ class ProcessImageView(APIView):
     device = torch.device('cuda')
 
     def post(self, request: Request):
-
         file = request.FILES.get('img')
 
         try:

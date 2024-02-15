@@ -41,7 +41,9 @@ class Network(nn.Module):
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-model = torch.load("../server/model.pth", map_location=device)
+model_path = "../server/model.pth"
+
+model = torch.load(model_path, map_location=device)
 
 file_name = "img.png"
 
