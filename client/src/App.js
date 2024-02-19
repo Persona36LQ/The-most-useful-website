@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import "./App.css"
+import TopPanel from "./top-panel";
 
 const App = () => {
     const [uploadedImage, setUploadedImage] = useState(null);
@@ -24,7 +25,7 @@ const App = () => {
 
             console.log(response.data)
 
-            setResult(response.data); // Предположим, что сервер отправляет текстовый ответ
+            setResult(response.data);
         } catch (error) {
             console.error('Ошибка при отправке изображения:', error);
         }
@@ -32,12 +33,17 @@ const App = () => {
 
     return (
         <div className="app">
+
+            <TopPanel/>
+
             <h1 className="title">The most useful website.</h1>
             <br/>
-            <h1 className="title"> Provide a photo of cat or dog and neural network will tell you what is on this picture</h1>
+            <h1 className="title"> Provide a photo of cat or dog and neural network will tell you what is on this
+                picture</h1>
             <input type="file" accept="image/*" onChange={handleImageUpload} className="file-input"/>
             {uploadedImage && (
                 <div className="preview-container">
+                    <img src={uploadedImage} alt="No"/> <br/>
                     <button onClick={handleImageSubmit} className="submit-button">Submit</button>
                 </div>
             )}
