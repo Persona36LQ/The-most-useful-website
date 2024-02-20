@@ -38,8 +38,17 @@ class Network(nn.Module):
         return x
 
 
+if torch.cuda.is_available():
+    device = torch.device('cuda')
+    map_location = 'cuda'
+else:
+    device = torch.device('cpu')
+    map_location = 'cpu'
+
 path = "model.pth"
 
-model = torch.load(path).to(device='cuda')
+model = torch.load(path, map_location=map_location)
+
+model.to(device)
 
 model.eval()

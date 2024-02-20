@@ -42,9 +42,6 @@ class Network(nn.Module):
         return x
 
 
-
-
-
 def main():
     """Run administrative tasks."""
 

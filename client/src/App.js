@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import "./App.css"
-import TopPanel from "./top-panel";
 
 const App = () => {
     const [uploadedImage, setUploadedImage] = useState(null);
@@ -34,7 +33,6 @@ const App = () => {
     return (
         <div className="app">
 
-            <TopPanel/>
 
             <h1 className="title">The most useful website.</h1>
             <br/>
@@ -43,7 +41,7 @@ const App = () => {
             <input type="file" accept="image/*" onChange={handleImageUpload} className="file-input"/>
             {uploadedImage && (
                 <div className="preview-container">
-                    <img src={uploadedImage} alt="No"/> <br/>
+                    <img src={uploadedImage} alt="Well I dont want to show your image"/> <br/>
                     <button onClick={handleImageSubmit} className="submit-button">Submit</button>
                 </div>
             )}

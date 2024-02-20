@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: django.Dockerfile
     ports:
-      - "8000:8000"
+      - "8080:8080"
     volumes:
       - ./server:/app/server
     command: python manage.py runserver

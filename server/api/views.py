@@ -4,11 +4,15 @@ import torch
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
 from .pytorch import model
 
 
 class ProcessImageView(APIView):
-    device = torch.device('cuda')
+    if torch.cuda.is_available():
+        device = torch.device('cuda')
+    else:
+        device = torch.device('cpu')
 
     def post(self, request: Request):
         file = request.FILES.get('img')
